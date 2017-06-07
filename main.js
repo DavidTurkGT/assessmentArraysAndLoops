@@ -14,11 +14,11 @@ var strings = ['this','is','a','collection','of','words'];
 // A:
 function longestString(array){
   var longest = "";
-  for (var i = 0; i < array.length; i++) {
-    if(array[i].length > longest.length){
-      longest = array[i]
+  array.forEach(function(string){
+    if(string.length > longest.length){
+      longest = string;
     }
-  }
+  })
   return longest;
 }
 
@@ -36,11 +36,13 @@ var numbers = [1,12,4,18,9,7,11,3,101,5,6];
 // A:
 function smallestNumber(array){
   var smallest = array[0];
-  for (var i = 0; i < array.length; i++) {
-    if(array[i] < smallest){
-      smallest = array[i];
+
+  array.forEach(function(number){
+    if(number < smallest){
+      smallest = number;
     }
-  }
+  })
+
   return smallest;
 }
 
@@ -53,11 +55,13 @@ console.assert(smallestNumber(numbers) === 1, {"message": "smallestNumber should
 // A:
 function getEvens(array){
   var evens = [];
-  for (var i = 0; i < array.length; i++) {
-    if(array[i]%2 === 0){
-      evens.push(array[i]);
+
+  array.forEach(function(number){
+    if(number%2 === 0){
+      evens.push(number);
     }
-  }
+  })
+
   return evens;
 }
 
@@ -72,9 +76,11 @@ console.assert(getEvens(numbers).toString() === '12,4,18,6', {'message': 'getEve
 // A:
 function arrayReverser(array){
   var newArray =[];
-  for (var i = array.length-1; i >= 0; i--) {
-    newArray.push(array[i]);
-  }
+
+  array.forEach(function(element){
+    newArray.unshift(element);
+  });
+
   return newArray;
 }
 
@@ -87,9 +93,9 @@ console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1
 // A:
 function sumArrayOfNumbers(array){
   var sum = 0;
-  for (var i = 0; i < array.length; i++) {
-    sum += array[i];
-  }
+
+  array.forEach(function(num){sum += num});
+
   return sum;
 }
 
@@ -102,11 +108,9 @@ console.assert(sumArrayOfNumbers(numbers) === 177, {'message': 'sumArrayOfNumber
 // A:
 function numbersOver10(array){
   var newArray =[];
-  for (var i = 0; i < array.length; i++) {
-    if(array[i] > 10){
-      newArray.push(array[i]);
-    }
-  }
+
+  array.forEach(function(num){ if(num > 10){ newArray.push(num); }});
+
   return newArray;
 }
 
@@ -117,13 +121,11 @@ console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {'message':
 // Write a function that accepts both an array and number argument
 // and returns an array of only the numbers greater than the number passed to the function
 // A:
-function numbersOverX(array, number){
+function numbersOverX(array, check){
   var newArray = [];
-  for (var i = 0; i < array.length; i++) {
-    if(array[i] > number){
-      newArray.push(array[i]);
-    }
-  }
+
+  array.forEach(function(num){ if(num > check){ newArray.push(num); }});
+
   return newArray;
 }
 
@@ -138,9 +140,7 @@ var numbersTwo = [33,56,72,2,5,66,90,21,42];
 // A:
 function joinArrays(doubleArray){
   var outArray = doubleArray[0];
-  for (var i = 0; i < doubleArray[1].length; i++) {
-    outArray.push(doubleArray[1][i]);
-  }
+  doubleArray[1].forEach(function(element){ outArray.push(element); })
   return outArray;
 }
 
